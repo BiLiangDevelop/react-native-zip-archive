@@ -10,13 +10,13 @@
 #define _SSZIPARCHIVE_H
 
 #import <Foundation/Foundation.h>
-#include "SSZipCommon.h"
+#include "ZipCommon.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol SSZipArchiveDelegate;
 
-@interface SSZipArchive : NSObject
+@interface ZipArchive : NSObject
 
 // Password check
 + (BOOL)isFilePasswordProtectedAtPath:(NSString *)path;

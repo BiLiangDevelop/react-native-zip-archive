@@ -5,7 +5,7 @@
 //  Created by Sam Soffes on 7/21/10.
 //  Copyright (c) Sam Soffes 2010-2015. All rights reserved.
 //
-#import "SSZipArchive.h"
+#import "ZipArchive.h"
 #include "unzip.h"
 #include "zip.h"
 #import "zlib.h"
@@ -15,11 +15,11 @@
 
 #define CHUNK 16384
 
-@interface SSZipArchive ()
+@interface ZipArchive ()
 + (NSDate *)_dateWithMSDOSFormat:(UInt32)msdosDateTime;
 @end
 
-@implementation SSZipArchive
+@implementation ZipArchive
 {
     NSString *_path;
     NSString *_filename;
@@ -485,20 +485,20 @@
 #pragma mark - Zipping
 + (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths
 {
-    return [SSZipArchive createZipFileAtPath:path withFilesAtPaths:paths withPassword:nil];
+    return [ZipArchive createZipFileAtPath:path withFilesAtPaths:paths withPassword:nil];
 }
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath{
-    return [SSZipArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath withPassword:nil];
+    return [ZipArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath withPassword:nil];
 }
 
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirectory{
-    return [SSZipArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath keepParentDirectory:keepParentDirectory withPassword:nil];
+    return [ZipArchive createZipFileAtPath:path withContentsOfDirectory:directoryPath keepParentDirectory:keepParentDirectory withPassword:nil];
 }
 
 + (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths withPassword:(NSString *)password
 {
     BOOL success = NO;
-    SSZipArchive *zipArchive = [[SSZipArchive alloc] initWithPath:path];
+    ZipArchive *zipArchive = [[ZipArchive alloc] initWithPath:path];
     if ([zipArchive open]) {
         for (NSString *filePath in paths) {
             [zipArchive writeFile:filePath withPassword:password];
@@ -522,7 +522,7 @@
     BOOL success = NO;
     
     NSFileManager *fileManager = nil;
-    SSZipArchive *zipArchive = [[SSZipArchive alloc] initWithPath:path];
+    ZipArchive *zipArchive = [[ZipArchive alloc] initWithPath:path];
     
     if ([zipArchive open]) {
         // use a local filemanager (queue/thread compatibility)

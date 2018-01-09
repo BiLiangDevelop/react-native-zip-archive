@@ -10,6 +10,7 @@
 
 #if __has_include(<React/RCTEventDispatcher.h>)
 #import <React/RCTEventDispatcher.h>
+#import <React/RCTBridge.h>
 #else
 #import "RCTBridge.h"
 #import "RCTEventDispatcher.h"
